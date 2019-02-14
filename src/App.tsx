@@ -1,25 +1,52 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
-class App extends Component {
-  render() {
+const Card = ({ message }: { message: string }) => <div>{message}</div>;
+
+interface MyState {
+  count: number;
+  name: string;
+}
+class App extends Component<{}, MyState> {
+  public state = {
+    count: 0,
+    name: "thomas"
+  };
+
+  private handleClick = () => {
+    this.setState({ count: this.state.count + 2 });
+  };
+
+  public handleReverse = (event: React.MouseEvent<HTMLElement>) => {
+    console.log(event);
+    const reversed = this.state.name.toLocaleUpperCase();
+    this.setState({ name: reversed });
+  };
+
+  private increment = (num: number) => {
+    this.setState(state => ({
+      count: state.count + num
+    }));
+  };
+
+  public render() {
+    const name: string = "thomas";
+
+    const name2: boolean = true;
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <button onClick={this.handleClick}>click me</button>
+        <input type="text" value={this.state.count} />
+        <button onClick={e => this.increment(1)}>typescript and stuff</button>
+        <Card message={"string"} />
+
+        <div>
+          <button onClick={e => this.handleReverse(e)}>
+            uppercase me{this.state.name}
+          </button>
+        </div>
       </div>
     );
   }
