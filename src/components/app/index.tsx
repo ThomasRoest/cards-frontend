@@ -1,25 +1,72 @@
 import React, { Component } from "react";
 import Card from "../card";
+import { ICard } from "../types";
 import styled from "styled-components";
-import { GlobalStyle } from "./style";
+import {
+  GlobalStyle,
+  CardContainer,
+  StyledApp,
+  AddnewcardButton
+} from "./style";
+import {
+  getCards,
+  createNewCard,
+  deleteCard
+} from "../../services/cardService";
 
-const StyledApp = styled.div`
-  /* max-width: 960px; */
-  /* margin: 0 auto; */
-`;
+interface State {
+  cards: ICard[];
+}
 
-const CardContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
+class App extends Component<{}, State> {
+  public state = {
+    cards: []
+  };
 
-class App extends Component<{}, {}> {
+  public componentDidMount() {
+    const cards = getCards();
+    if (cards) {
+      this.setState({ cards });
+    }
+  }
+
+  public createNewCard = () => {
+    const newCard = {
+      id: Date.now(),
+      title: "add title here",
+      todoItems: [],
+      notes: []
+    };
+
+    createNewCard(newCard);
+    const cards = [...this.state.cards, newCard];
+    this.setState({ cards });
+  };
+
+  public deleteCard = (id: number) => {
+    deleteCard(id);
+    const cards = this.state.cards.filter((card: ICard) => card.id !== id);
+    this.setState({ cards });
+  };
+
   public render() {
+    const { cards } = this.state;
     return (
       <StyledApp>
         <GlobalStyle />
         <CardContainer>
-          <Card />
+          {cards.map((item: ICard) => (
+            <Card
+              key={item.id}
+              title={item.title}
+              deleteCard={this.deleteCard}
+              cardId={item.id}
+            />
+          ))}
+
+          <AddnewcardButton onClick={this.createNewCard}>
+            add new card
+          </AddnewcardButton>
         </CardContainer>
       </StyledApp>
     );

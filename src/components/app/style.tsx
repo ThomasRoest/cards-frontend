@@ -1,10 +1,10 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
+    font-size: 16px;
   }
   *,
   *:before,
@@ -33,4 +33,21 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     list-style-type: none;
   }
+`;
+
+export const CardContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const StyledApp = styled.div`
+  background-color: aliceblue;
+  min-height: 100vh;
+`;
+
+export const AddnewcardButton = styled.button`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 20px;
 `;
