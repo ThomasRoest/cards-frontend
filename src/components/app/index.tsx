@@ -49,6 +49,17 @@ class App extends Component<{}, State> {
     this.setState({ cards });
   };
 
+  public updateTitle = (id: number, value: string) => {
+    const cards = this.state.cards.map((card: ICard) => {
+      if (card.id === id) {
+        card.title = value;
+      }
+      return card;
+    });
+
+    this.setState({ cards });
+  };
+
   public render() {
     const { cards } = this.state;
     return (
@@ -60,6 +71,7 @@ class App extends Component<{}, State> {
               key={item.id}
               title={item.title}
               deleteCard={this.deleteCard}
+              updateTitle={this.updateTitle}
               cardId={item.id}
             />
           ))}

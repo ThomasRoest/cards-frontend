@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Checkbox } from "../formElements";
 import TodoList from "../todolist";
@@ -52,65 +52,76 @@ interface Props {
   title: string;
   deleteCard: (id: number) => void;
   cardId: number;
+  updateTitle: (id: number, value: string) => void;
 }
 
-class Card extends React.Component<Props, {}> {
-  // public handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   this.setState({ value: event.target.value });
-  // };
+const Card = (props: Props) => {
+  const { title, cardId, updateTitle } = props;
+  return (
+    <StyledCard>
+      <CardHeader>
+        <input
+          type="text"
+          name="title"
+          value={title}
+          onChange={e => updateTitle(cardId, e.target.value)}
+        />
+      </CardHeader>
+      <Cardbody>
+        <pre>
+          <code>{JSON.stringify(props, null, 2)}</code>
+        </pre>
+        <button
+          className="btn btn-primary tooltip"
+          data-tooltip="delete card"
+          onClick={e => props.deleteCard(cardId)}
+        >
+          X
+        </button>
+      </Cardbody>
+    </StyledCard>
+  );
+};
+// public handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+//   this.setState({ value: event.target.value });
+// };
 
-  // public handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault();
-  //   if (!this.state.value) {
-  //     return;
-  //   }
-  //   const newTodo = {
-  //     id: Date.now(),
-  //     content: this.state.value,
-  //     completed: false
-  //   };
-  //   const todos: TodoItem[] = [...this.state.todoItems, newTodo];
-  //   this.setState({ todoItems: todos, value: "" });
-  // };
+// public handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+//   event.preventDefault();
+//   if (!this.state.value) {
+//     return;
+//   }
+//   const newTodo = {
+//     id: Date.now(),
+//     content: this.state.value,
+//     completed: false
+//   };
+//   const todos: TodoItem[] = [...this.state.todoItems, newTodo];
+//   this.setState({ todoItems: todos, value: "" });
+// };
 
-  // public handleUpdate = (
-  //   event: React.ChangeEvent<HTMLInputElement>,
-  //   id: number
-  // ) => {
-  //   console.log(event.target.value, id);
-  // };
+// public handleUpdate = (
+//   event: React.ChangeEvent<HTMLInputElement>,
+//   id: number
+// ) => {
+//   console.log(event.target.value, id);
+// };
 
-  // prettier-ignore
-  // public deleteTodo = (event: React.MouseEvent<HTMLButtonElement>, id: number) => {
-  //   const newTodos = this.state.todoItems.filter(item => item.id !== id);
-  //   this.setState({ todoItems: newTodos });
-  // };
+// prettier-ignore
+// public deleteTodo = (event: React.MouseEvent<HTMLButtonElement>, id: number) => {
+//   const newTodos = this.state.todoItems.filter(item => item.id !== id);
+//   this.setState({ todoItems: newTodos });
+// };
 
-  // prettier-ignore
-  // public handleComplete = (e: React.ChangeEvent<HTMLInputElement>, id: number) => {
-  //   const todoItems = this.state.todoItems.map(item => {
-  //     if (item.id === id) {
-  //       item.completed = !item.completed;
-  //     }
-  //     return item;
-  //   });
-  //   this.setState({ todoItems });
-  // };
-
-  public render() {
-    const { title, cardId } = this.props;
-    return (
-      <StyledCard>
-        <CardHeader>{title }</CardHeader>
-        <Cardbody>
-          <pre>
-            <code>{JSON.stringify(this.props, null, 2)}</code>
-          </pre>
-          <button className="btn btn-primary tooltip" data-tooltip="delete card" onClick={e => this.props.deleteCard(cardId)}>X</button>
-        </Cardbody>
-      </StyledCard>
-    );
-  }
-}
+// prettier-ignore
+// public handleComplete = (e: React.ChangeEvent<HTMLInputElement>, id: number) => {
+//   const todoItems = this.state.todoItems.map(item => {
+//     if (item.id === id) {
+//       item.completed = !item.completed;
+//     }
+//     return item;
+//   });
+//   this.setState({ todoItems });
+// };
 
 export default Card;
