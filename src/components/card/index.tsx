@@ -1,62 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { Checkbox } from "../formElements";
-import TodoList from "../todolist";
 
-const StyledCard = styled.div`
-  background-color: white;
-  flex: 0 1 300px;
-  padding: 1rem;
-  margin: 1rem;
-  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-    0 1px 3px 0 rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-  align-self: flex-start;
-`;
-
-// const CheckBox = styled.input`
-//   width: 5%;
-// `;
-
-// interface InputProps {
-//   completed?: boolean;
-// }
-
-// const Input = styled.input`
-//   flex: 1 0 auto;
-//   text-decoration: ${(props: InputProps) =>
-//     props.completed ? "line-through" : "none"};
-//   font-size: 1rem;
-// `;
-
-const CardHeader = styled.header``;
-
-const Cardbody = styled.div``;
-
-// const ListItem = styled.li`
-//   display: flex;
-// `;
-
-interface TodoItem {
-  id: number;
-  content: string;
-  completed: boolean;
-}
-
-// interface State {
-//   value: string;
-//   todoItems: TodoItem[];
-// }
+import { NotesSection, Cardbody, CardHeader } from "./style";
+import { INote } from "../types";
+import { Note, StyledCard } from "./style";
 
 interface Props {
   title: string;
-  deleteCard: (id: number) => void;
   cardId: number;
-  updateTitle: (id: number, value: string) => void;
+  notes: INote[];
+  deleteCard: (id: number) => void;
+  handleChange: (id: number, value: string) => void;
+  createNote: (cardId: number) => void;
+  deleteNote: (cardId: number, noteId: number) => void;
+  handleNoteChange: (id: number, noteId: number, value: string) => void;
 }
 
 const Card = (props: Props) => {
-  const { title, cardId, updateTitle } = props;
+  const {
+    title,
+    cardId,
+    handleChange,
+    createNote,
+    notes,
+    handleNoteChange,
+    deleteNote
+  } = props;
   return (
     <StyledCard>
       <CardHeader>
@@ -64,17 +33,38 @@ const Card = (props: Props) => {
           type="text"
           name="title"
           value={title}
-          onChange={e => updateTitle(cardId, e.target.value)}
+          onChange={e => handleChange(cardId, e.target.value)}
+          placeholder="Add title"
         />
+        <button onClick={() => createNote(cardId)}>add note</button>
       </CardHeader>
       <Cardbody>
-        <pre>
-          <code>{JSON.stringify(props, null, 2)}</code>
-        </pre>
+        <NotesSection>
+          {notes.map(item => (
+            <Note key={item.id}>
+              <textarea
+                className="form-input"
+                value={item.content}
+                placeholder="note"
+                onChange={e =>
+                  handleNoteChange(cardId, item.id, e.target.value)
+                }
+              />
+              <button
+                className="btn btn-sm btn-error"
+                onClick={() => deleteNote(item.cardId, item.id)}
+              >
+                error button
+              </button>
+              <code>{JSON.stringify(item, null, 2)}</code>
+            </Note>
+          ))}
+        </NotesSection>
+
         <button
           className="btn btn-primary tooltip"
           data-tooltip="delete card"
-          onClick={e => props.deleteCard(cardId)}
+          onClick={() => props.deleteCard(cardId)}
         >
           X
         </button>
