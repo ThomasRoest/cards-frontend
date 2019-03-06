@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { NotesSection, Cardbody, CardHeader } from "./style";
 import { INote } from "../types";
 import { Note, StyledCard } from "./style";
+import { ClearIcon } from "../icons";
 
 interface Props {
   title: string;
@@ -51,12 +52,12 @@ const Card = (props: Props) => {
                 }
               />
               <button
-                className="btn btn-sm btn-error"
+                className="btn btn-sm tooltip"
+                data-tooltip="delete note"
                 onClick={() => deleteNote(item.cardId, item.id)}
               >
-                error button
+                <ClearIcon />
               </button>
-              <code>{JSON.stringify(item, null, 2)}</code>
             </Note>
           ))}
         </NotesSection>
@@ -66,52 +67,11 @@ const Card = (props: Props) => {
           data-tooltip="delete card"
           onClick={() => props.deleteCard(cardId)}
         >
-          X
+          <ClearIcon />
         </button>
       </Cardbody>
     </StyledCard>
   );
 };
-// public handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-//   this.setState({ value: event.target.value });
-// };
-
-// public handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-//   event.preventDefault();
-//   if (!this.state.value) {
-//     return;
-//   }
-//   const newTodo = {
-//     id: Date.now(),
-//     content: this.state.value,
-//     completed: false
-//   };
-//   const todos: TodoItem[] = [...this.state.todoItems, newTodo];
-//   this.setState({ todoItems: todos, value: "" });
-// };
-
-// public handleUpdate = (
-//   event: React.ChangeEvent<HTMLInputElement>,
-//   id: number
-// ) => {
-//   console.log(event.target.value, id);
-// };
-
-// prettier-ignore
-// public deleteTodo = (event: React.MouseEvent<HTMLButtonElement>, id: number) => {
-//   const newTodos = this.state.todoItems.filter(item => item.id !== id);
-//   this.setState({ todoItems: newTodos });
-// };
-
-// prettier-ignore
-// public handleComplete = (e: React.ChangeEvent<HTMLInputElement>, id: number) => {
-//   const todoItems = this.state.todoItems.map(item => {
-//     if (item.id === id) {
-//       item.completed = !item.completed;
-//     }
-//     return item;
-//   });
-//   this.setState({ todoItems });
-// };
 
 export default Card;

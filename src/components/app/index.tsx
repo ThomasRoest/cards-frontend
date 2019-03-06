@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import Card from "../card";
 import { ICard } from "../types";
-import styled from "styled-components";
-
+import * as localStorage from "../../services/cardService";
 import {
   GlobalStyle,
   CardContainer,
   StyledApp,
   AddnewcardButton
 } from "./style";
-import * as localStorage from "../../services/cardService";
 
 interface State {
   cards: ICard[];
@@ -42,7 +40,6 @@ class App extends Component<{}, State> {
 
   public deleteCard = (id: number) => {
     const cards = this.state.cards.filter((card: ICard) => card.id !== id);
-
     localStorage.sync(cards);
     this.setState({ cards });
   };
