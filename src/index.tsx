@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app";
 import { BrowserRouter } from "react-router-dom";
-// import "spectre.css";
 import "spectre.css/dist/spectre.min.css";
 import * as serviceWorker from "./serviceWorker";
 

@@ -1,20 +1,29 @@
 import React from "react";
-import styled from "styled-components";
-
-import { NotesSection, Cardbody, CardHeader } from "./style";
-import { INote } from "../types";
-import { Note, StyledCard } from "./style";
+import { INote, ITodoItem } from "../../interfaces";
+import {
+  NotesSection,
+  Cardbody,
+  CardHeader,
+  Note,
+  StyledCard,
+  TodoSection,
+  CardFooter,
+  TitleInput
+} from "./style";
 import { ClearIcon } from "../icons";
 
 interface Props {
   title: string;
   cardId: number;
   notes: INote[];
+  todoItems: ITodoItem[];
   deleteCard: (id: number) => void;
   handleChange: (id: number, value: string) => void;
   createNote: (cardId: number) => void;
   deleteNote: (cardId: number, noteId: number) => void;
   handleNoteChange: (id: number, noteId: number, value: string) => void;
+  createTodoItem: (cardId: number) => void;
+  deleteTodoItem: (cardId: number, todoItemId: number) => void;
 }
 
 const Card = (props: Props) => {
@@ -25,21 +34,40 @@ const Card = (props: Props) => {
     createNote,
     notes,
     handleNoteChange,
-    deleteNote
+    deleteNote,
+    createTodoItem,
+    todoItems,
+    deleteTodoItem
   } = props;
   return (
-    <StyledCard>
+    <StyledCard backgroundColor="mintCream">
       <CardHeader>
-        <input
+        <TitleInput
           type="text"
           name="title"
           value={title}
           onChange={e => handleChange(cardId, e.target.value)}
           placeholder="Add title"
         />
-        <button onClick={() => createNote(cardId)}>add note</button>
       </CardHeader>
       <Cardbody>
+        <TodoSection>
+          {todoItems.map(item => (
+            <div key={item.id} className="input-group">
+              <div className="input-group-addon">
+                <input type="checkbox" />
+              </div>
+              <input type="text" className="form-input" placeholder="input" />
+              <button
+                className="btn btn-primary input-group-btn"
+                onClick={() => deleteTodoItem(cardId, item.id)}
+              >
+                X
+              </button>
+            </div>
+          ))}
+        </TodoSection>
+
         <NotesSection>
           {notes.map(item => (
             <Note key={item.id}>
@@ -61,7 +89,9 @@ const Card = (props: Props) => {
             </Note>
           ))}
         </NotesSection>
+      </Cardbody>
 
+      <CardFooter>
         <button
           className="btn btn-primary tooltip"
           data-tooltip="delete card"
@@ -69,7 +99,9 @@ const Card = (props: Props) => {
         >
           <ClearIcon />
         </button>
-      </Cardbody>
+        <button onClick={() => createNote(cardId)}>add note</button>
+        <button onClick={() => createTodoItem(cardId)}>Add todo</button>
+      </CardFooter>
     </StyledCard>
   );
 };

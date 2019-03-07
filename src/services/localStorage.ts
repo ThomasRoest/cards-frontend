@@ -1,4 +1,4 @@
-import { ICard, INote } from "../components/types";
+import { ICard, INote } from "../interfaces";
 
 export function getCards() {
   const storage: any = localStorage.getItem("cards");

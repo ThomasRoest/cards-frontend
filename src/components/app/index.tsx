@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Card from "../card";
-import { ICard } from "../types";
-import * as localStorage from "../../services/cardService";
+import { ICard } from "../../interfaces";
+import * as localStorage from "../../services/localStorage";
 import {
   GlobalStyle,
   CardContainer,
@@ -99,6 +99,35 @@ class App extends Component<{}, State> {
     this.setState({ cards });
   };
 
+  public createTodoItem = (cardId: number) => {
+    const newTodo = { id: Date.now(), content: "", completed: false, cardId };
+
+    const cards = this.state.cards.map((card: ICard) => {
+      if (card.id === cardId) {
+        card.todoItems.push(newTodo);
+      }
+      return card;
+    });
+
+    localStorage.sync(cards);
+    this.setState({ cards });
+  };
+
+  public deleteTodoItem = (cardId: number, todoItemId: number) => {
+    const cards = this.state.cards.map((card: ICard) => {
+      if (card.id === cardId) {
+        const newTodoItems = card.todoItems.filter(
+          item => item.id !== todoItemId
+        );
+        card.todoItems = newTodoItems;
+      }
+      return card;
+    });
+
+    localStorage.sync(cards);
+    this.setState({ cards });
+  };
+
   public render() {
     const { cards } = this.state;
     return (
@@ -116,6 +145,9 @@ class App extends Component<{}, State> {
               handleNoteChange={this.handleNoteChange}
               notes={item.notes}
               deleteNote={this.deleteNote}
+              createTodoItem={this.createTodoItem}
+              todoItems={item.todoItems}
+              deleteTodoItem={this.deleteTodoItem}
             />
           ))}
 
