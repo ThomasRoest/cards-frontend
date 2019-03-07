@@ -128,6 +128,35 @@ class App extends Component<{}, State> {
     this.setState({ cards });
   };
 
+  public updateTodo = (
+    cardId: number,
+    todoItemId: number,
+    value: any,
+    name: string
+  ) => {
+    const cards = this.state.cards.map((card: ICard) => {
+      if (card.id === cardId) {
+        const newTodos = card.todoItems.map(todoItem => {
+          if (todoItem.id === todoItemId) {
+            if (name === "content") {
+              todoItem.content = value;
+            } else if (name === "completed") {
+              todoItem.completed = value;
+            }
+          }
+          return todoItem;
+        });
+        card.todoItems = newTodos;
+      }
+      return card;
+    });
+
+    console.log(cards);
+
+    localStorage.sync(cards);
+    this.setState({ cards });
+  };
+
   public render() {
     const { cards } = this.state;
     return (
@@ -148,6 +177,7 @@ class App extends Component<{}, State> {
               createTodoItem={this.createTodoItem}
               todoItems={item.todoItems}
               deleteTodoItem={this.deleteTodoItem}
+              updateTodo={this.updateTodo}
             />
           ))}
 

@@ -24,6 +24,12 @@ interface Props {
   handleNoteChange: (id: number, noteId: number, value: string) => void;
   createTodoItem: (cardId: number) => void;
   deleteTodoItem: (cardId: number, todoItemId: number) => void;
+  updateTodo: (
+    cardId: number,
+    todoItemId: number,
+    value: string | boolean,
+    name: string
+  ) => void;
 }
 
 const Card = (props: Props) => {
@@ -37,7 +43,8 @@ const Card = (props: Props) => {
     deleteNote,
     createTodoItem,
     todoItems,
-    deleteTodoItem
+    deleteTodoItem,
+    updateTodo
   } = props;
   return (
     <StyledCard backgroundColor="mintCream">
@@ -55,9 +62,25 @@ const Card = (props: Props) => {
           {todoItems.map(item => (
             <div key={item.id} className="input-group">
               <div className="input-group-addon">
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  name="completed"
+                  checked={item.completed}
+                  onChange={e =>
+                    updateTodo(cardId, item.id, e.target.checked, e.target.name)
+                  }
+                />
               </div>
-              <input type="text" className="form-input" placeholder="input" />
+              <input
+                type="text"
+                className="form-input"
+                name="content"
+                value={item.content}
+                placeholder="input"
+                onChange={e =>
+                  updateTodo(cardId, item.id, e.target.value, e.target.name)
+                }
+              />
               <button
                 className="btn btn-primary input-group-btn"
                 onClick={() => deleteTodoItem(cardId, item.id)}
