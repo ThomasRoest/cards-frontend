@@ -151,8 +151,6 @@ class App extends Component<{}, State> {
       return card;
     });
 
-    console.log(cards);
-
     localStorage.sync(cards);
     this.setState({ cards });
   };

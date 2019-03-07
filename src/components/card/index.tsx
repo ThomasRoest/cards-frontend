@@ -1,5 +1,6 @@
 import React from "react";
 import { INote, ITodoItem } from "../../interfaces";
+import TodoItem from "../todoItem";
 import {
   NotesSection,
   Cardbody,
@@ -60,34 +61,13 @@ const Card = (props: Props) => {
       <Cardbody>
         <TodoSection>
           {todoItems.map(item => (
-            <div key={item.id} className="input-group">
-              <div className="input-group-addon">
-                <input
-                  type="checkbox"
-                  name="completed"
-                  checked={item.completed}
-                  onChange={e =>
-                    updateTodo(cardId, item.id, e.target.checked, e.target.name)
-                  }
-                />
-              </div>
-              <input
-                type="text"
-                className="form-input"
-                name="content"
-                value={item.content}
-                placeholder="input"
-                onChange={e =>
-                  updateTodo(cardId, item.id, e.target.value, e.target.name)
-                }
-              />
-              <button
-                className="btn btn-primary input-group-btn"
-                onClick={() => deleteTodoItem(cardId, item.id)}
-              >
-                X
-              </button>
-            </div>
+            <TodoItem
+              key={item.id}
+              item={item}
+              cardId={cardId}
+              updateTodo={updateTodo}
+              deleteTodoItem={deleteTodoItem}
+            />
           ))}
         </TodoSection>
 
