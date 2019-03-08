@@ -17,21 +17,17 @@ interface Props {
 const TodoItem = ({ item, cardId, updateTodo, deleteTodoItem }: Props) => {
   return (
     <StyledTodoItem key={item.id}>
-      <div className="input-group-addon">
-        <div className="form-group">
-          <label className="form-checkbox">
-            <input
-              type="checkbox"
-              name="completed"
-              checked={item.completed}
-              onChange={e =>
-                updateTodo(cardId, item.id, e.target.checked, e.target.name)
-              }
-            />
-            <i className="form-icon" />
-          </label>
-        </div>
-      </div>
+      <label className="form-checkbox">
+        <input
+          type="checkbox"
+          name="completed"
+          checked={item.completed}
+          onChange={e =>
+            updateTodo(cardId, item.id, e.target.checked, e.target.name)
+          }
+        />
+        <i className="form-icon" />
+      </label>
       <TextInput
         type="text"
         name="content"
