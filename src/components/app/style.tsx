@@ -4,7 +4,7 @@ export const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
+    font-size: 18px;
   }
   *,
   *:before,
