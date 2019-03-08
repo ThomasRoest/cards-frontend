@@ -8,6 +8,16 @@ export const CardHeader = styled.header`
   margin-bottom: 1rem;
 `;
 
+export const TextArea = styled.textarea`
+  -webkit-appearance: none;
+  appearance: none;
+  outline: 0px;
+  border: 0px;
+  width: 100%;
+  overflow: auto;
+  resize: none;
+`;
+
 export const Cardbody = styled.div``;
 
 export const CardFooter = styled.footer`
@@ -40,11 +50,20 @@ export const TitleInput = styled.input`
 `;
 
 export const Note = styled.div`
-  display: flex;
+  /* min-height: 20px; */
+  padding: 5px;
+  /* margin-bottom: 20px; */
+  background-color: white;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+
+  /* display: flex;
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
     0 1px 3px 0 rgba(0, 0, 0, 0.12);
   background-color: white;
-  padding: 0.3rem;
+  padding: 0.3rem; */
 `;
 
 export const StyledCard = styled("div")<{ backgroundColor: string }>`

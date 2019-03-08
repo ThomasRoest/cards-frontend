@@ -29,6 +29,7 @@ const TodoItem = ({ item, cardId, updateTodo, deleteTodoItem }: Props) => {
         <i className="form-icon" />
       </label>
       <TextInput
+        autoFocus={true}
         type="text"
         name="content"
         value={item.content}

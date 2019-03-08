@@ -9,7 +9,8 @@ import {
   StyledCard,
   TodoSection,
   CardFooter,
-  TitleInput
+  TitleInput,
+  TextArea
 } from "./style";
 import { TrashIcon, ClearIcon } from "../icons";
 
@@ -74,8 +75,7 @@ const Card = (props: Props) => {
         <NotesSection>
           {notes.map(item => (
             <Note key={item.id}>
-              <textarea
-                className="form-input"
+              <TextArea
                 value={item.content}
                 placeholder="note"
                 onChange={e =>
