@@ -11,7 +11,7 @@ import {
   CardFooter,
   TitleInput
 } from "./style";
-import { ClearIcon } from "../icons";
+import { TrashIcon, ClearIcon } from "../icons";
 
 interface Props {
   title: string;
@@ -95,15 +95,19 @@ const Card = (props: Props) => {
       </Cardbody>
 
       <CardFooter>
+        <button className="btn btn-link" onClick={() => createNote(cardId)}>
+          add note
+        </button>
+        <button className="btn btn-link" onClick={() => createTodoItem(cardId)}>
+          Add todo
+        </button>
         <button
-          className="btn btn-primary tooltip"
+          className="btn btn-link btn-delete tooltip"
           data-tooltip="delete card"
           onClick={() => props.deleteCard(cardId)}
         >
-          <ClearIcon />
+          <TrashIcon />
         </button>
-        <button onClick={() => createNote(cardId)}>add note</button>
-        <button onClick={() => createTodoItem(cardId)}>Add todo</button>
       </CardFooter>
     </StyledCard>
   );

@@ -10,7 +10,27 @@ export const CardHeader = styled.header`
 
 export const Cardbody = styled.div``;
 
-export const CardFooter = styled.footer``;
+export const CardFooter = styled.footer`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  .btn-link {
+    text-transform: uppercase;
+    font-size: 0.6rem;
+    font-weight: bold;
+    a {
+      color: #000;
+    }
+  }
+
+  .btn-delete {
+    font-weight: 400;
+    text-transform: lowercase;
+    svg {
+      fill: grey;
+    }
+  }
+`;
 
 export const TitleInput = styled.input`
   font-weight: 700;
