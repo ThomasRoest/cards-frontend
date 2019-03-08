@@ -1,5 +1,6 @@
 import React from "react";
 import { ITodoItem } from "../../interfaces";
+import { StyledTodoItem, TextInput, DeleteTodoButton } from "./style";
 
 interface Props {
   item: ITodoItem;
@@ -15,34 +16,36 @@ interface Props {
 
 const TodoItem = ({ item, cardId, updateTodo, deleteTodoItem }: Props) => {
   return (
-    <div key={item.id} className="input-group">
+    <StyledTodoItem key={item.id}>
       <div className="input-group-addon">
-        <input
-          type="checkbox"
-          name="completed"
-          checked={item.completed}
-          onChange={e =>
-            updateTodo(cardId, item.id, e.target.checked, e.target.name)
-          }
-        />
+        <div className="form-group">
+          <label className="form-checkbox">
+            <input
+              type="checkbox"
+              name="completed"
+              checked={item.completed}
+              onChange={e =>
+                updateTodo(cardId, item.id, e.target.checked, e.target.name)
+              }
+            />
+            <i className="form-icon" />
+          </label>
+        </div>
       </div>
-      <input
+      <TextInput
         type="text"
-        className="form-input"
         name="content"
         value={item.content}
-        placeholder="input"
+        placeholder="..."
+        completed={item.completed}
         onChange={e =>
           updateTodo(cardId, item.id, e.target.value, e.target.name)
         }
       />
-      <button
-        className="btn btn-primary input-group-btn"
-        onClick={() => deleteTodoItem(cardId, item.id)}
-      >
+      <DeleteTodoButton onClick={() => deleteTodoItem(cardId, item.id)}>
         X
-      </button>
-    </div>
+      </DeleteTodoButton>
+    </StyledTodoItem>
   );
 };
 

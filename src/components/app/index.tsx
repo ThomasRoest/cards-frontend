@@ -101,7 +101,6 @@ class App extends Component<{}, State> {
 
   public createTodoItem = (cardId: number) => {
     const newTodo = { id: Date.now(), content: "", completed: false, cardId };
-
     const cards = this.state.cards.map((card: ICard) => {
       if (card.id === cardId) {
         card.todoItems.push(newTodo);
