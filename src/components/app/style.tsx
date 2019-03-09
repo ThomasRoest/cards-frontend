@@ -37,7 +37,9 @@ export const GlobalStyle = createGlobalStyle`
 
 export const CardContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  min-height: 100vh;
 `;
 
 export const StyledApp = styled.div`
