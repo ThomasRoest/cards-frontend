@@ -4,7 +4,6 @@ export const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
   }
   *,
   *:before,
@@ -48,7 +47,7 @@ export const StyledApp = styled.div`
 `;
 
 export const AddnewcardButton = styled.button`
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
   margin: 20px;

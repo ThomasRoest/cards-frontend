@@ -10,7 +10,9 @@ import {
   TodoSection,
   CardFooter,
   TitleInput,
-  TextArea
+  TextArea,
+  DeleteNoteButton,
+  ButtonWrapper
 } from "./style";
 import { TrashIcon, ClearIcon } from "../icons";
 
@@ -82,13 +84,14 @@ const Card = (props: Props) => {
                   handleNoteChange(cardId, item.id, e.target.value)
                 }
               />
-              <button
-                className="btn btn-sm tooltip"
-                data-tooltip="delete note"
-                onClick={() => deleteNote(item.cardId, item.id)}
-              >
-                <ClearIcon />
-              </button>
+              <ButtonWrapper>
+                <DeleteNoteButton
+                  data-tooltip="delete note"
+                  onClick={() => deleteNote(item.cardId, item.id)}
+                >
+                  x{/* <ClearIcon /> */}
+                </DeleteNoteButton>
+              </ButtonWrapper>
             </Note>
           ))}
         </NotesSection>

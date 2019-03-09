@@ -178,7 +178,10 @@ class App extends Component<{}, State> {
             />
           ))}
 
-          <AddnewcardButton onClick={this.createNewCard}>
+          <AddnewcardButton
+            className="btn btn-primary"
+            onClick={this.createNewCard}
+          >
             add new card
           </AddnewcardButton>
         </CardContainer>

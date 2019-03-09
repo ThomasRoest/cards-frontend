@@ -8,6 +8,21 @@ export const CardHeader = styled.header`
   margin-bottom: 1rem;
 `;
 
+export const DeleteNoteButton = styled.button`
+  appearance: none;
+  border: 0px;
+  transition: background-color 0.5s ease;
+  &:hover {
+    background-color: orange;
+    transition: background-color 0.5s ease;
+    cursor: pointer;
+  }
+`;
+
+export const ButtonWrapper = styled.div`
+  flex: 1 0 10%;
+`;
+
 export const TextArea = styled.textarea`
   -webkit-appearance: none;
   appearance: none;
@@ -52,6 +67,7 @@ export const TitleInput = styled.input`
 export const Note = styled.div`
   /* min-height: 20px; */
   padding: 5px;
+  display: flex;
   /* margin-bottom: 20px; */
   background-color: white;
   border: 1px solid #e3e3e3;
