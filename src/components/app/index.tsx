@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Card from "../card";
 import { ICard } from "../../interfaces";
 import * as localStorage from "../../services/localStorage";
+import EmptyState from "../emptystate";
 import {
   GlobalStyle,
   CardContainer,
@@ -159,6 +160,7 @@ class App extends Component<{}, State> {
     return (
       <StyledApp>
         <GlobalStyle />
+        {cards.length < 1 && <EmptyState createNewCard={this.createNewCard} />}
         <CardContainer>
           {cards.map((item: ICard) => (
             <Card
