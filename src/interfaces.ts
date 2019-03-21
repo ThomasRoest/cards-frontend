@@ -3,6 +3,7 @@ export interface ICard {
   title: string;
   notes: INote[];
   todoItems: ITodoItem[];
+  color: string;
 }
 
 export interface INote {

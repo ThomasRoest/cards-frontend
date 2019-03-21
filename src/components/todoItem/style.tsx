@@ -5,20 +5,18 @@ export const StyledTodoItem = styled.div`
   background-color: white;
   margin-bottom: 10px;
   padding: 0 0 0 5px;
+  border-radius: 4px;
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
     0 1px 3px 0 rgba(0, 0, 0, 0.12);
 `;
 
 export const TextInput = styled("input")<{ completed: boolean }>`
   flex: 1;
-  border: 0px;
   outline: 0px;
   padding: 2px;
+  border: 0px;
   text-decoration: ${props => (props.completed ? "line-through" : "none")};
   color: ${props => (props.completed ? "grey" : "none")};
-  &:focus {
-    outline: 1px solid lightblue;
-  }
 `;
 
 export const DeleteTodoButton = styled.button`

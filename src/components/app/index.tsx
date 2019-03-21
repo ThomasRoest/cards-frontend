@@ -31,7 +31,8 @@ class App extends Component<{}, State> {
       id: Date.now(),
       title: "",
       todoItems: [],
-      notes: []
+      notes: [],
+      color: "MintCream"
     };
 
     const cards = [...this.state.cards, newCard];
@@ -177,6 +178,7 @@ class App extends Component<{}, State> {
               todoItems={item.todoItems}
               deleteTodoItem={this.deleteTodoItem}
               updateTodo={this.updateTodo}
+              color={item.color}
             />
           ))}
 

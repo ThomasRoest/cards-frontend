@@ -19,6 +19,7 @@ import { TrashIcon, ClearIcon } from "../icons";
 interface Props {
   title: string;
   cardId: number;
+  color: string;
   notes: INote[];
   todoItems: ITodoItem[];
   deleteCard: (id: number) => void;
@@ -48,10 +49,11 @@ const Card = (props: Props) => {
     createTodoItem,
     todoItems,
     deleteTodoItem,
-    updateTodo
+    updateTodo,
+    color
   } = props;
   return (
-    <StyledCard backgroundColor="mintCream">
+    <StyledCard backgroundColor={color}>
       <CardHeader>
         <TitleInput
           type="text"

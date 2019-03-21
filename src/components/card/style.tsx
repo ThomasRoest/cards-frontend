@@ -65,21 +65,13 @@ export const TitleInput = styled.input`
 `;
 
 export const Note = styled.div`
-  /* min-height: 20px; */
   padding: 5px;
   display: flex;
-  /* margin-bottom: 20px; */
   background-color: white;
-  border: 1px solid #e3e3e3;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-
-  /* display: flex;
   box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
     0 1px 3px 0 rgba(0, 0, 0, 0.12);
-  background-color: white;
-  padding: 0.3rem; */
 `;
 
 export const StyledCard = styled("div")<{ backgroundColor: string }>`

@@ -12,9 +12,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    /* min-height: calc(100vh - 100px); */
-    /* margin: 50px; */
-    background-color: honeydew;
     letter-spacing: -1px;
   }
 
